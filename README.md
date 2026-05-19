@@ -28,26 +28,26 @@ Uma API REST completa para gerenciamento de tarefas (CRUD), desenvolvida como o 
 - **CSV-Parse**: Biblioteca focada em Streams para o tratamento eficiente de dados tabulares.
 - **File System (fs/promises)**: Módulo nativo do Node para persistência e manipulação assíncrona do arquivo local `server.json`.
 
-## 📁 Estrutura do Projeto
 
 ## ⚙️ Como Iniciar
 
-# Clone o Repositório
+## Clone o Repositório
 git clone https://github.com/JouberthAlves/nodeJS-CRUD-TS.git
 
-# Entre no diretório do projeto
+## Entre no diretório do projeto
 cd nodeJS-CRUD-TS
 
-# Instale a pasta node_modules
+## Instale a pasta node_modules
 npm i
 
-# Inicie os servidores
+## Inicie os servidores
 npm run dev
 npm run build
 
-# Inicie a leitura do CSV
+## Inicie a leitura do CSV
 npm run importCsv
 
+## 📁 Estrutura do Projeto
 Conforme a arquitetura implementada no repositório:
 
 ```text
