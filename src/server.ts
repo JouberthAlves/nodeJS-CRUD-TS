@@ -1,7 +1,14 @@
 import  Express from "express";
 
-const app = Express();
+import { taskRoutes } from "./routes/taskRoutes.js";
 
-app.listen(3333, () => {
-    console.log("Server is running on port 3333");
-});
+const app = Express()
+const PORT = 3333
+
+app.use(Express.json());
+
+app.use(taskRoutes)
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+})
