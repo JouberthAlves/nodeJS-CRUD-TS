@@ -7,12 +7,12 @@ import { postMiddleware } from "../middlewares/[POST]-middleware.js"
 const taskController = new TaskController()
 const taskRoutes = Router()
 
-taskRoutes.get('/:id', (req: Request, res: Response) => {
-    taskController.index(req, res)
-})
+taskRoutes.get("/:id", async (req: Request, res: Response) => {
+  await taskController.index(req, res);
+});
 
-taskRoutes.post('/tasks', postMiddleware, (req: Request, res: Response) => {
-    taskController.create(req, res)
-})
+taskRoutes.post("/tasks", postMiddleware, async (req: Request, res: Response) => {
+  await taskController.create(req, res);
+});
 
 export { taskRoutes }

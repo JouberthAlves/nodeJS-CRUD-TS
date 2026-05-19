@@ -1,0 +1,52 @@
+import fs from "fs/promises";
+import path from "path";
+
+interface Task {
+  task_id: string;
+  title: string;
+  description: string;
+  createdAt: string;
+}
+
+interface ServerData {
+  tasks?: Task[];
+}
+
+const DB_PATH = path.join(process.cwd(), "server.json");
+
+export class Storage {
+
+  static async read(): Promise<ServerData> {
+    try {
+      const data = await fs.readFile(DB_PATH, "utf-8");
+      return JSON.parse(data);
+    } catch {
+
+      return {};
+    }
+  }
+
+  static async write(data: ServerData): Promise<void> {
+    await fs.writeFile(DB_PATH, JSON.stringify(data, null, 2), "utf-8");
+  }
+
+  static async addTask(task: Task): Promise<Task> {
+    const data = await this.read();
+    data.tasks = data.tasks || [];
+    data.tasks.push(task);
+    await this.write(data);
+    return task;
+  }
+
+
+  static async getTasks(): Promise<Task[]> {
+    const data = await this.read();
+    return data.tasks || [];
+  }
+
+
+  static async getTaskById(id: string): Promise<Task | null> {
+    const tasks = await this.getTasks();
+    return tasks.find((task) => task.task_id === id) || null;
+  }
+}
