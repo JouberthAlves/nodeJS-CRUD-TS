@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import z from "zod"
+import z, { array } from "zod"
 import { Storage } from "../../database/storage.js"
 
 class TaskController {
@@ -78,6 +78,17 @@ class TaskController {
     }
 
     res.json(updatedTask)
+  }
+
+  async delete(req: Request, res: Response) {
+    const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id
+    const deleted = await Storage.deleteTask(id)
+
+    if (!deleted) {
+      return res.status(404).json({ error: "Task not found" })
+    }
+
+    res.status(204)
   }
 }
 

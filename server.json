@@ -1,17 +1,10 @@
 {
   "tasks": [
     {
-      "task_id": "d494f47a-4203-4268-9d35-81012b2842ff",
-      "title": "teste",
-      "createdAt": "2026-05-19T17:38:04.022Z",
-      "updatedAt": "2026-05-19T17:59:55.046Z"
-    },
-    {
-      "task_id": "8eee4417-ea7f-42ce-8660-953e6b4a138a",
-      "title": "teste",
-      "description": "spaik",
-      "createdAt": "2026-05-19T18:00:29.356Z",
-      "updatedAt": "2026-05-19T18:02:01.416Z"
+      "task_id": "2fdc96ab-1804-400d-a782-6b8390d2afc3",
+      "title": "Ir levar o cachorro para passear",
+      "description": "No description provided",
+      "createdAt": "2026-05-19T18:20:25.365Z"
     }
   ]
 }

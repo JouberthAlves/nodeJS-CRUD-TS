@@ -72,4 +72,18 @@ export class Storage {
     await this.write(data);
     return data.tasks[taskIndex];
   }
+
+  static async deleteTask(id: string): Promise<boolean> {
+    const data = await this.read();
+    if (!data.tasks) return false;
+
+    const originalLength = data.tasks.length;
+
+    data.tasks = data.tasks.filter((task) => task.task_id !== id);
+
+    if (data.tasks.length === originalLength) return false;
+
+    await this.write(data);
+    return true;
+  }
 }
