@@ -86,4 +86,17 @@ export class Storage {
     await this.write(data);
     return true;
   }
+
+  static async patchTask(id: string, updatedFields: Partial<Task>): Promise<Task | null> {
+    const data = await this.read();
+    if (!data.tasks) return null;
+
+    const taskIndex = data.tasks.findIndex((task) => task.task_id === id)
+
+    if (taskIndex === -1) return null;
+
+    data.tasks[taskIndex] = { ...data.tasks[taskIndex], ...updatedFields };
+    await this.write(data);
+    return data.tasks[taskIndex];
+  }
 }

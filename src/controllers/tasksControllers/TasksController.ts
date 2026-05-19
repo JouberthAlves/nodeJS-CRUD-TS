@@ -63,7 +63,7 @@ class TaskController {
 
   async update(req: Request, res: Response) {
     const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id
-    
+
     const updateBodyScheme = z.object({
       title: z.string().trim().min(3).optional(),
       description: z.string().trim().optional(),
@@ -71,7 +71,11 @@ class TaskController {
 
     const { title, description } = updateBodyScheme.parse(req.body)
 
-    const updatedTask = await Storage.updateTask(id, { title, description, updatedAt: req.updated_at?.toISOString() })
+    const updatedTask = await Storage.updateTask(id, {
+      title,
+      description,
+      updatedAt: req.updated_at?.toISOString(),
+    })
 
     if (!updatedTask) {
       return res.status(404).json({ error: "Task not found" })
@@ -89,6 +93,30 @@ class TaskController {
     }
 
     res.status(204)
+  }
+
+  async patch(req: Request, res: Response) {
+    const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id
+
+    const patchBodyScheme = z
+      .object({
+        title: z.string().trim().min(3),
+        description: z.string().trim().min(5),
+      })
+      .partial()
+
+    const partialData = patchBodyScheme.parse(req.body)
+
+    const updatedTask = await Storage.updateTask(id, {
+      ...partialData,
+      updatedAt: new Date().toISOString(),
+    })
+
+    if (!updatedTask) {
+      return res.status(404).json({ error: "Task not found" })
+    }
+
+    return res.json(updatedTask)
   }
 }
 

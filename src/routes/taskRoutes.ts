@@ -5,6 +5,7 @@ import { TaskController } from "../controllers/tasksControllers/TasksController.
 import { postMiddleware } from "../middlewares/[POST]-middleware.js"
 import { putMiddleware } from "../middlewares/[PUT]-middleware.js"
 import { deleteMiddleware } from "../middlewares/[DELETE]-middleware.js"
+import { patchMiddleware } from "../middlewares/[PATCH]-middleware.js"
 
 const taskController = new TaskController()
 const taskRoutes = Router()
@@ -45,6 +46,14 @@ taskRoutes.delete(
   deleteMiddleware,
   async (req: Request, res: Response) => {
     await taskController.delete(req, res)
+  },
+)
+
+taskRoutes.patch(
+  "/patch/:id",
+  patchMiddleware,
+  async (req: Request, res: Response) => {
+    await taskController.patch(req, res)
   },
 )
 
