@@ -49,4 +49,14 @@ export class Storage {
     const tasks = await this.getTasks();
     return tasks.find((task) => task.task_id === id) || null;
   }
+
+  static async getTaskByName(name: string): Promise<Task | null> {
+    const tasks = await this.getTasks();
+    return tasks.find((task) => task.title === name) || null;
+  }
+
+  static async getTaskByDescription(description: string): Promise<Task | null> {
+    const tasks = await this.getTasks();
+    return tasks.find((task) => task.description === description) || null;
+  }
 }

@@ -11,6 +11,14 @@ taskRoutes.get("/:id", async (req: Request, res: Response) => {
   await taskController.index(req, res);
 });
 
+taskRoutes.get("/search/:name", async (req: Request, res: Response) => {
+  await taskController.getByName(req, res);
+});
+
+taskRoutes.get("/searchDesc/:description", async (req: Request, res: Response) => {
+  await taskController.getByDescription(req, res);
+});
+
 taskRoutes.post("/tasks", postMiddleware, async (req: Request, res: Response) => {
   await taskController.create(req, res);
 });
