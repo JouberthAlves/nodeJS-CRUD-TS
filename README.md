@@ -30,21 +30,6 @@ Uma API REST completa para gerenciamento de tarefas (CRUD), desenvolvida como o 
 
 ## 📁 Estrutura do Projeto
 
-Conforme a arquitetura implementada no repositório:
-
-```text
-├── src/
-│   ├── assets/              # Capturas de tela para documentação
-│   ├── controllers/         # Lógica de controle de requisições (TasksController)
-│   ├── database/            # Camada de banco de dados baseado em arquivo (storage.ts)
-│   ├── middlewares/         # Middlewares interceptadores ordenados por métodos HTTP
-│   ├── routes/              # Definição e mapeamento de endpoints (taskRoutes.ts)
-│   ├── types/               # Extensões globais de tipos do Express (request.d.ts)
-│   └── server.ts            # Inicialização e ponto de partida do servidor Express
-├── streams/                 # Script carregador e o arquivo de dados tasks.csv
-├── package.json             # Scripts de execução e dependências do projeto
-└── server.json              # Arquivo de persistência local ("Banco de Dados")
-
 ## ⚙️ Como Iniciar
 
 # Clone o Repositório
@@ -62,3 +47,18 @@ npm run build
 
 # Inicie a leitura do CSV
 npm run importCsv
+
+Conforme a arquitetura implementada no repositório:
+
+```text
+├── src/
+│   ├── assets/              # Capturas de tela para documentação
+│   ├── controllers/         # Lógica de controle de requisições (TasksController)
+│   ├── database/            # Camada de banco de dados baseado em arquivo (storage.ts)
+│   ├── middlewares/         # Middlewares interceptadores ordenados por métodos HTTP
+│   ├── routes/              # Definição e mapeamento de endpoints (taskRoutes.ts)
+│   ├── types/               # Extensões globais de tipos do Express (request.d.ts)
+│   └── server.ts            # Inicialização e ponto de partida do servidor Express
+├── streams/                 # Script carregador e o arquivo de dados tasks.csv
+├── package.json             # Scripts de execução e dependências do projeto
+└── server.json              # Arquivo de persistência local ("Banco de Dados")
