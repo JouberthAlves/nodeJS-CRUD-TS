@@ -118,6 +118,19 @@ class TaskController {
 
     return res.json(updatedTask)
   }
+
+  async complete(req: Request, res: Response) {
+    const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id
+    const updatedTask = await Storage.updateTask(id, {
+      completedAt: req.completed_at?.toISOString(),
+    })
+
+    if (!updatedTask) {
+      return res.status(404).json({ error: "Task not found" })
+    }
+
+    return res.json(updatedTask)
+  }
 }
 
 export { TaskController }

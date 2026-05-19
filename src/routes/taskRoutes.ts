@@ -2,10 +2,12 @@ import { Router } from "express"
 import { Request, Response } from "express"
 
 import { TaskController } from "../controllers/tasksControllers/TasksController.js"
+
 import { postMiddleware } from "../middlewares/[POST]-middleware.js"
 import { putMiddleware } from "../middlewares/[PUT]-middleware.js"
 import { deleteMiddleware } from "../middlewares/[DELETE]-middleware.js"
 import { patchMiddleware } from "../middlewares/[PATCH]-middleware.js"
+import { completeMiddleware } from "../middlewares/[PATCH]-completeMiddleware.js"
 
 const taskController = new TaskController()
 const taskRoutes = Router()
@@ -54,6 +56,14 @@ taskRoutes.patch(
   patchMiddleware,
   async (req: Request, res: Response) => {
     await taskController.patch(req, res)
+  },
+)
+
+taskRoutes.patch(
+  "/complete/:id",
+  completeMiddleware,
+  async (req: Request, res: Response) => {
+    await taskController.complete(req, res)
   },
 )
 
