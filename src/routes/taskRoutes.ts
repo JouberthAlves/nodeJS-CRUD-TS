@@ -3,6 +3,7 @@ import { Request, Response } from "express"
 
 import { TaskController } from "../controllers/tasksControllers/TasksController.js"
 import { postMiddleware } from "../middlewares/[POST]-middleware.js"
+import { putMiddleware } from "../middlewares/[PUT]-middleware.js"
 
 const taskController = new TaskController()
 const taskRoutes = Router()
@@ -21,6 +22,10 @@ taskRoutes.get("/searchDesc/:description", async (req: Request, res: Response) =
 
 taskRoutes.post("/tasks", postMiddleware, async (req: Request, res: Response) => {
   await taskController.create(req, res);
+});
+
+taskRoutes.put('/update/:id', putMiddleware, async (req: Request, res: Response) => {
+  await taskController.update(req, res);
 });
 
 export { taskRoutes }

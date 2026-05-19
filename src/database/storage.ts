@@ -6,6 +6,7 @@ interface Task {
   title: string;
   description: string;
   createdAt: string;
+  updatedAt?: string;
 }
 
 interface ServerData {
@@ -58,5 +59,17 @@ export class Storage {
   static async getTaskByDescription(description: string): Promise<Task | null> {
     const tasks = await this.getTasks();
     return tasks.find((task) => task.description === description) || null;
+  }
+
+  static async updateTask(id: string, updatedTask: Partial<Task>): Promise<Task | null> {
+    const data = await this.read()
+    if (!data.tasks) return null;
+
+    const taskIndex = data.tasks.findIndex((task) => task.task_id === id);
+    if (taskIndex === -1) return null;
+
+    data.tasks[taskIndex] = { ...data.tasks[taskIndex], ...updatedTask };
+    await this.write(data);
+    return data.tasks[taskIndex];
   }
 }
